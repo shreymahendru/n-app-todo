@@ -25,7 +25,7 @@ export class MockTodoService implements TodoService
 
     public getTodos(): Promise<ReadonlyArray<Todo>>
     {
-        return Promise.resolve(this._todos.where(t => !t.isDeleted));
+        return Promise.resolve(this._todos);
     }
 
     public getTodo(id: string): Promise<Todo>

@@ -16,7 +16,7 @@ export class ListTodosViewModel extends PageViewModel
     private _todos: ReadonlyArray<Todo>;
 
 
-    public get todos(): ReadonlyArray<Todo> { return this._todos; } // getters used to reveal VM properties to the template
+    public get todos(): ReadonlyArray<Todo> { return this._todos?.where(t => !t.isDeleted) ?? []; } // getters used to reveal VM properties to the template
 
 
     public constructor(todoService: TodoService) // dependency getting injected
