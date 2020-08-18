@@ -23,10 +23,10 @@ class Installer implements ComponentInstaller
 
         registry.registerSingleton("TodoService", MockTodoService); // installing dependencies, usually used by VMs
         // Types of dependencies: 
-        // registerSingleton: Singleton dependency, one instance of the dependency class through out the lifecycle of the app.
-        // registry.registerTransient: Transient dependency, new instance of the dependency class is created when it needs to be injected.
-        // registry.registerScoped: Scoped dependency, same instance is used if it's the same scope, else it it's new. 
-        //                          Eg: Page and a component in that page will get the same instance, while another page will get a new instance of the dependency.
+        // registerSingleton: Singleton, one instance of the dependency class through out the lifecycle of the app.
+        // registry.registerTransient: Transient, new instance of the dependency class is created when it needs to be injected.
+        // registry.registerScoped: Scoped dependency, same instance is used if it's the same scope, else it it's new instance. 
+        //                          Eg: Page and a component in that page will get the same instance of the dependency, while another page will get a new instance of the dependency.
         // registry.registerInstance: Instance dependency, similar to singleton, only deference is you provide the instance, and the instance is not created by the framework. 
     }
 }

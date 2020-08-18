@@ -1,6 +1,6 @@
 import { PageViewModel, template, route } from "@nivinjoseph/n-app";
 import * as Routes from "../routes";
-import "./list-todos-view.scss";
+import "./list-todos-view.scss"; // importing css for the template
 import { inject } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
 import { TodoService } from "../../../sdk/services/todo-service/todo-service";
@@ -9,7 +9,7 @@ import { Todo } from "../../../sdk/proxies/todo/todo";
 
 @template(require("./list-todos-view.html")) // path to the template
 @route(Routes.listTodos) // route that the page is going to be shown at
-@inject("TodoService") // services that is a dependency for this VM, this gets injected in the constructor, these services are installed in client.ts
+@inject("TodoService") //  dependency for this VM, this gets injected in the constructor, these dependencies are installed in client.ts
 export class ListTodosViewModel extends PageViewModel
 {
     private readonly _todoService: TodoService;
@@ -35,19 +35,19 @@ export class ListTodosViewModel extends PageViewModel
     protected onCreate()
     {
         super.onCreate();
-        console.log("on Create, when the Vm is created, butt the template has not been mounted in the DOM.");
+        console.log("on Create, when the Vm is created, but the template has not been mounted in the DOM.");
     }
 
     protected onMount(element: HTMLElement)
     {
         super.onMount(element);
-        console.log("onMount, when the page template is mounted on the DOM, you get the HTML element as a parameter here to manipulate it. using Jquery for example.");
+        console.log("onMount, when the page template is mounted on the DOM, you get the HTML element as a parameter here to manipulate it, like using Jquery for example.");
     }
 
     protected onEnter(): void
     {
         super.onEnter();
-        console.log("onEnter, when the page is appeared, usually used to fetch data to show on the page. Also the parameters for this function would be any query/path params of the url");
+        console.log("onEnter, when the page has appeared, usually used to fetch data to show on the page. The parameters for this function would be any query/path params of the url defined in the route");
         this._todoService.getTodos()
             .then(t => this._todos = t)
             .catch(e => console.log(e));

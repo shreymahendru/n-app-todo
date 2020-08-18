@@ -7,8 +7,8 @@ import { Todo } from "../../../sdk/proxies/todo/todo";
 
 
 @template(require("./todo-view.html"))
-@element("todo") // name of the element. This is what you put as the html tag inside other page/component's template
-@bind("value")  // the name of the properties that this component take (binds) using v-bind. example: `v-bind:value="todo"` 
+@element("todo") // Name of the element. This is what you put as the html tag inside other page/component's template
+@bind("value")  // The name of the properties that this component take (binds) using v-bind. example: `v-bind:value="todo"` 
 @inject("NavigationService") // dependency
 export class TodoViewModel extends ComponentViewModel
 {
