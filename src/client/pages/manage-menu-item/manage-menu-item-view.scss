@@ -1,0 +1,31 @@
+.manage-menu-item-view{
+    background-image: linear-gradient(-135deg,#1400c8,#b900b4,#f50000);
+    padding-bottom: 50px;
+
+    .hero-head{
+        background-color: white;
+    }
+    
+    .form-container{
+        margin:  auto;
+        background-color: white;
+        width: 600px;
+        padding: 20px;   
+        border-radius: 20px;     
+    }
+    
+    .image-preview {
+        width: 200px;
+        margin: 10px;
+    }
+    
+    .control{
+        margin-top: 10px;
+    }
+    
+    @media only screen and (max-width: 600px) {
+        .form-container {
+            width: 90%;
+        }
+    }
+}

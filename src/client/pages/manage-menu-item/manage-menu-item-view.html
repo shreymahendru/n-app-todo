@@ -1,0 +1,93 @@
+<div class="manage-menu-item-view">
+    <section class="hero">
+        <div class="hero-head level">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                    <p class="title">RESTAURANT</p>
+                </div>
+                <div class="navbar-burger" @click="isNavbarOpen = !isNavbarOpen" :class="{ 'is-active': isNavbarOpen }">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+            <div class="navbar-menu" :class="{ 'is-active': isNavbarOpen }">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <a href="#" class="has-text-black">{{ isNew ? "Add" : "Update"}} Menu Item</a>
+                    </div>
+                    <div class="navbar-item">
+                        <router-link to="/menu" class="button is-outlined is-info">Menu</router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-medium">
+        <div class="hero-body">
+            <div class="has-text-centered">
+                <p class="title has-text-white">{{ isNew ? "Add" : "Update"}}</p>
+            </div>
+        </div>
+    </section>
+    <div class="form-container">
+        <form>
+            <div class="field">
+                <label class="label">Name</label>
+                <div class="control">
+                    <input type="text" class="input" v-model="name" placeholder="Name" :class="{'is-danger': errors.name}">
+                </div>
+                <p class="help is-danger">{{errors.name}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Description</label>
+                <div class="control">
+                    <textarea class="textarea" v-model="description" placeholder="Description" :class="{'is-danger': errors.description}"></textarea>
+                </div>
+                <p class="help is-danger">{{errors.description}}</p>
+            </div>
+            <div class="field">
+                <label class="label">Price</label>
+                <div class="control">
+                    <input type="number" class="input" v-model.number="price" placeholder="Price" :class="{'is-danger': errors.price}">
+                </div>
+                <p class="help is-danger">{{errors.price}}</p>
+            </div>
+            <div class="file is-success">
+                <label class="file-label">
+                    <input class="file-input" type="file" @change="onFileChange">
+                    <span class="file-cta">
+                        <span class="file-label">
+                            Upload Image
+                        </span>
+                    </span>
+                </label>
+            </div>
+            <img v-if="imageUrl" :src=imageUrl class="image-preview">
+            <div>
+                <!-- <el-upload action="#" list-type="picture-card" :on-preview="handlePictureCardPreview" :on-success="handleAvatarSuccess">
+                    
+                </el-upload> -->
+                <!-- <el-upload action="#">
+                    
+                </el-upload> -->
+
+                <!-- <el-upload action="#" :on-success="handleAvatarSuccess">
+                    <img v-if="imageUrl" :src=imageUrl class="avatar">
+                    <button v-else >upload</button>
+                </el-upload> -->
+                <!-- <el-upload action="#" :on-success="handleAvatarSuccess" @change="onFileChange">
+                    <img v-if="imageUrl" :src=imageUrl class="avatar">
+                </el-upload> -->
+            </div>
+            <div class="field is-grouped">
+                <div class="control">
+                    <button class="button is-link" v-on:click.prevent="save" v-bind:disabled="hasErrors">Save</button>
+                </div>
+                <div class="control">
+                    <router-link class="button is-text" to="/menu">Cancel</router-link>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
