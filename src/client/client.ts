@@ -11,9 +11,12 @@ import { ComponentInstaller, Registry } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
 import { MockTodoService } from "../sdk/services/todo-service/mock-todo-service";
 import { components } from "./components/components";
+import { MockMenuService } from "../sdk/services/menu-service/mock-menu-service";
 
 console.log(Vue);
+import * as Element from "element-ui";
 
+Vue.use(Element);
 
 class Installer implements ComponentInstaller
 {
@@ -22,6 +25,7 @@ class Installer implements ComponentInstaller
         given(registry, "registry").ensureHasValue().ensureIsObject();
 
         registry.registerSingleton("TodoService", MockTodoService); // installing dependencies, usually used by VMs
+        registry.registerSingleton("MenuService", MockMenuService);
         // Types of dependencies: 
         // registerSingleton: Singleton, one instance of the dependency class through out the lifecycle of the app.
         // registry.registerTransient: Transient, new instance of the dependency class is created when it needs to be injected.
