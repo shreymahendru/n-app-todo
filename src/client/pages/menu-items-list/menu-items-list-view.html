@@ -1,0 +1,36 @@
+<div class="menu-items-list-view">
+    <section class="hero">
+        <div class="hero-head level">
+            <div class="navbar-brand">
+                <div class="navbar-item">
+                    <p class="title">RESTAURANT</p>
+                </div>
+                    <div class="navbar-burger" @click="isNavbarOpen = !isNavbarOpen" :class="{ 'is-active': isNavbarOpen }">
+                        <span></span>
+                        <span></span>
+                        <span></span>
+                    </div>
+            </div>
+            <div class="navbar-menu" :class="{ 'is-active': isNavbarOpen }">
+                <div class="navbar-end">
+                    <div class="navbar-item">
+                        <a href="#" class="has-text-black">Menu</a>
+                    </div>
+                    <div class="navbar-item"> 
+                        <router-link to="/manage-item" class="button is-outlined is-info">Create Menu Item</router-link>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="hero is-medium">
+        <div class="hero-body">
+            <div class="has-text-centered">
+                <p class="title has-text-white">MENU</p>
+            </div>
+        </div>
+    </section>
+    <div class="menu-item">
+        <item v-for="item in menuItems" v-bind:key="item.id" v-bind:value="item"></item>
+    </div>
+</div>

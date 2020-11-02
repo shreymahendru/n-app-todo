@@ -1,0 +1,41 @@
+.menu-item-view{
+    width: 600px;
+    margin: 25px;
+    
+    .title{
+        margin-bottom: 0;
+    }
+    
+    .price{
+        color: orangered;
+        text-align: end;
+        font-size: 20px;
+    }
+    
+    .button{
+        margin-top: 10px;
+        width: 49%;
+    }
+}
+
+// for media
+// .menu-item-view{
+//     width: 600px;
+//     margin: 25px;
+    
+//     .price{
+//         color: orangered;
+//         text-align: end;
+//     }
+// }
+
+// for cards
+// .menu-item-view{
+//     width: 300px;
+//     margin: 25px;
+    
+//     .price{
+//         color: orangered;
+//         text-align: end;
+//     }
+// }

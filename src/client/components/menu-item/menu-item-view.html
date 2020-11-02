@@ -1,0 +1,77 @@
+<div class="menu-item-view">
+    <div class="box">
+        <div class="columns is-vcentered">
+            <div class="column is-4">
+                <figure class="image">
+                    <img :src=menuItem.image alt="Food image">
+                </figure>
+            </div>
+            <div class="column">
+                <div class="columns is-mobile">
+                    <div class="column">
+                        <p class="title">{{menuItem.name}}</p>
+                    </div>
+                    <div class="column is-3">
+                        <p class="price">$ {{menuItem.price}}</p>
+                    </div>                    
+                </div>
+                <p>{{menuItem.description}}</p>
+                <div>
+                    <button class="button is-outlined is-success" v-on:click.prevent="editMenuItem">Edit</button>
+                    <button class="button is-outlined is-danger" v-on:click.prevent="deleteMenuItem">Delete</button>
+                </div>            
+            </div>
+
+        </div>
+ 
+    </div>
+</div>
+
+<!-- using media -->
+<!-- <div class="menu-item-view">
+    <div class="box">
+        <article class="media">
+            <div class="media-left">
+                <figure class="image is-128x128">
+                    <img :src=menuItem.image alt="Food image">
+                </figure>
+            </div>
+            <div class="media-content">
+                <div class="content">
+                    <p class="title">{{menuItem.name}}</p>
+                    <p>{{menuItem.description}}</p>
+                </div>
+                <footer class="level is-mobile">
+                    <a href="#" class="card-footer-item" v-on:click.prevent="editMenuItem">Edit</a>
+                    <a href="#" class="card-footer-item" v-on:click.prevent="deleteMenuItem">Delete</a>
+                </footer>
+            </div>
+            <div class="media-right">
+                <h2 class="price">$ {{menuItem.price}}</h2>
+            </div>
+        </article>
+    </div>
+</div> -->
+
+<!-- using cards -->
+
+<!-- <div class="menu-item-view">
+    <div class="card">
+        <div class="card-image">
+            <figure class="image is-5by3">
+                <img :src=menuItem.image alt="Food image">
+            </figure>
+        </div>
+        <div class="card-content">
+            <div class="content">
+                <p class="title">{{menuItem.name}}</p>
+                <p>{{menuItem.description}}</p>
+                <h3 class="price">$ {{menuItem.price}}</h3>
+            </div>
+        </div>
+        <footer class="card-footer">
+            <a href="#" class="card-footer-item" v-on:click.prevent="editMenuItem">Edit</a>
+            <a href="#" class="card-footer-item" v-on:click.prevent="deleteMenuItem">Delete</a>
+        </footer>  
+    </div>
+</div> -->
