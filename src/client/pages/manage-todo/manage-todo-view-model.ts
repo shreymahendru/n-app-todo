@@ -73,7 +73,7 @@ export class ManageTodoViewModel extends PageViewModel
     }
 
 
-    protected onEnter(id?: string): void // getting the path parameter from the url
+    protected override onEnter(id?: string): void // getting the path parameter from the url
     {
         if (id && !id.isEmptyOrWhiteSpace())
         {

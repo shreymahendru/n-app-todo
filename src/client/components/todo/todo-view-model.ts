@@ -58,19 +58,19 @@ export class TodoViewModel extends ComponentViewModel
      *  Life cycle methods for components are same as pages, but no onEnter and onLeave.
      */
 
-    protected onCreate()
+    protected override onCreate()
     {
         super.onCreate();
         console.log("onCreate component");
     }
 
-    protected onMount(e: HTMLElement)
+    protected override onMount(e: HTMLElement)
     {
         super.onMount(e);
         console.log("onMount component");
     }
 
-    protected onDestroy()
+    protected override onDestroy()
     {
         super.onDestroy();
         console.log("onDestroy component");
