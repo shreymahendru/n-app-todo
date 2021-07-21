@@ -1,5 +1,5 @@
 {
-    "name": "wr-app",
+    "name": "n-app-todo",
     "version": "0.0.1",
     "description": "n app todo app",
     "main": "src/server/server.js",
