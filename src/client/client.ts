@@ -1,16 +1,15 @@
 import "@babel/polyfill";
 import "@nivinjoseph/n-ext";
 import "./styles/main.scss";
-import * as $ from "jquery";
-(<any>window).jQuery = $; (<any>window).$ = $;
 import "material-design-icons/iconfont/material-icons.css";
 import { ClientApp, Vue } from "@nivinjoseph/n-app";
-import * as Routes from "./pages/routes";
+import { Routes } from "./pages/routes";
 import { pages } from "./pages/pages";
 import { ComponentInstaller, Registry } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
 import { MockTodoService } from "../sdk/services/todo-service/mock-todo-service";
 import { components } from "./components/components";
+import { MockPaxManagementService } from "../sdk/services/pax-management-service/mock-pax-management-service";
 
 console.log(Vue);
 
@@ -21,7 +20,11 @@ class Installer implements ComponentInstaller
     {
         given(registry, "registry").ensureHasValue().ensureIsObject();
 
-        registry.registerSingleton("TodoService", MockTodoService); // installing dependencies, usually used by VMs
+        registry
+            .registerSingleton("TodoService", MockTodoService)
+            .registerSingleton("PaxManagementService", MockPaxManagementService); // installing dependencies, usually used by VMs
+
+
         // Types of dependencies: 
         // registerSingleton: Singleton, one instance of the dependency class through out the lifecycle of the app.
         // registry.registerTransient: Transient, new instance of the dependency class is created when it needs to be injected.

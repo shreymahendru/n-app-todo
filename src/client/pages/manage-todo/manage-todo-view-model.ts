@@ -1,11 +1,11 @@
 import { PageViewModel, template, route, NavigationService } from "@nivinjoseph/n-app";
-import * as Routes from "../routes";
 import "./manage-todo-view.scss";
 import { inject } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
 import { Validator, strval } from "@nivinjoseph/n-validate";
 import { TodoService } from "../../../sdk/services/todo-service/todo-service";
 import { Todo } from "../../../sdk/proxies/todo/todo";
+import { Routes } from "../routes";
 
 
 @template(require("./manage-todo-view.html"))

@@ -2,7 +2,7 @@ import { ComponentViewModel, template, element, bind, NavigationService } from "
 import "./todo-view.scss";
 import { inject } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
-import * as Routes from "../../pages/routes";
+import { Routes } from "../../pages/routes";
 import { Todo } from "../../../sdk/proxies/todo/todo";
 
 
