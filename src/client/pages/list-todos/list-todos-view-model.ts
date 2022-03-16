@@ -1,10 +1,10 @@
 import { PageViewModel, template, route } from "@nivinjoseph/n-app";
-import * as Routes from "../routes";
 import "./list-todos-view.scss"; // importing css for the template
 import { inject } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
 import { TodoService } from "../../../sdk/services/todo-service/todo-service";
 import { Todo } from "../../../sdk/proxies/todo/todo";
+import { Routes } from "../routes";
 
 
 @template(require("./list-todos-view.html")) // path to the template
