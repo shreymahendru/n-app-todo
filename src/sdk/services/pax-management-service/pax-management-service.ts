@@ -10,5 +10,5 @@ export interface PaxManagementService
 
     update(pax: Pax): Promise<void>;
     
-    delete(...id: Array<string>): Promise<void>;
+    delete(...ids: Array<string>): Promise<void>;
 }
