@@ -102,7 +102,7 @@ export class PaxListViewModel extends PageViewModel
             this._dialogService.hideLoadingScreen();
         }
 
-        this._dialogService.showWarningMessage(`Pax ${pax.firstName} ${pax.lastName} successfully deleted.`);
+        this._dialogService.showSuccessMessage(`Pax ${pax.firstName} ${pax.lastName} successfully deleted.`);
         await this._loadPaxes();
     }
 
@@ -112,7 +112,7 @@ export class PaxListViewModel extends PageViewModel
 
         const selectedPaxes = this._paxes.where(t => t.isSelected);
 
-        if (!confirm(`Are you sure you want to delete ${selectedPaxes.length} selected paxes`))
+        if (!confirm(`Are you sure you want to delete ${selectedPaxes.length} selected paxes?`))
             return;
 
         this._dialogService.showLoadingScreen();
@@ -131,7 +131,7 @@ export class PaxListViewModel extends PageViewModel
             this._dialogService.hideLoadingScreen();
         }
 
-        this._dialogService.showWarningMessage(`${selectedPaxes.length} paxes successfully deleted.`);
+        this._dialogService.showSuccessMessage(`${selectedPaxes.length} paxes successfully deleted.`);
         await this._loadPaxes();
     }
 
