@@ -25,7 +25,7 @@ export class PaxListViewModel extends PageViewModel
     private _countryFilter: Country | null = null;
 
 
-    public get filteredPax(): ReadonlyArray<SelectablePax>
+    public get filteredPaxes(): ReadonlyArray<SelectablePax>
     {
         let paxes = this._paxes;
 
@@ -110,15 +110,15 @@ export class PaxListViewModel extends PageViewModel
     {
         given(this, "this").ensure(t => t.selectedCount > 0);
 
-        const selectedPax = this._paxes.where(t => t.isSelected);
+        const selectedPaxes = this._paxes.where(t => t.isSelected);
 
-        if (!confirm(`Are you sure you want to delete ${selectedPax.length} selected paxes`))
+        if (!confirm(`Are you sure you want to delete ${selectedPaxes.length} selected paxes`))
             return;
 
         this._dialogService.showLoadingScreen();
         try 
         {
-            await this._paxManagementService.delete(...selectedPax.map(t => t.pax.id!));
+            await this._paxManagementService.delete(...selectedPaxes.map(t => t.pax.id!));
         }
         catch (e)
         {
@@ -131,7 +131,7 @@ export class PaxListViewModel extends PageViewModel
             this._dialogService.hideLoadingScreen();
         }
 
-        this._dialogService.showWarningMessage(`${selectedPax.length} paxes successfully deleted.`);
+        this._dialogService.showWarningMessage(`${selectedPaxes.length} paxes successfully deleted.`);
         await this._loadPaxes();
     }
 

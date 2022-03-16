@@ -89,7 +89,7 @@ export class MockPaxManagementService implements PaxManagementService
             .ensure(t => t.isNotEmpty)
             .ensure(ids => ids.every(id => this._allPassengers.some(pax => pax.id === id)));
 
-        for (const id in ids)
+        for (const id of ids)
         {
             const existingPaxIndex = this._allPassengers.findIndex(t => t.id === id);
             this._allPassengers.splice(existingPaxIndex, 1);

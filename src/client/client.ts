@@ -40,8 +40,8 @@ const client = new ClientApp("#app", "shell")
     .useAccentColor("#93C5FC")
     .registerComponents(...components) // registering all your app components
     .registerPages(...pages)  // registering all your app pages
-    .useAsInitialRoute(Routes.listTodos)
-    .useAsUnknownRoute(Routes.listTodos)
+    .useAsInitialRoute(Routes.paxList)
+    .useAsUnknownRoute(Routes.paxList)
     .useHistoryModeRouting();
 
 client.bootstrap();

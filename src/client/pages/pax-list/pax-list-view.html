@@ -59,7 +59,7 @@
             </thead>
             <tbody>
                 <pax-table-row :key="pax.pax.id" :selectable-pax="pax" @manage-pax="managePax" @delete-pax="deletePax"
-                    v-for="pax of filteredPax">
+                    v-for="pax of filteredPaxes">
                 </pax-table-row>
             </tbody>
         </table>
