@@ -5,7 +5,7 @@ import { Country, Pax } from "../../models/pax";
 import { PaxManagementService } from "./pax-management-service";
 
 
-export class MockPaxManagementService implements PaxManagementService
+export class LocalPaxManagementService implements PaxManagementService
 {
     private readonly _allPassengers: Array<Pax> = new Array<Pax>();
 
@@ -83,16 +83,12 @@ export class MockPaxManagementService implements PaxManagementService
         this._allPassengers.splice(existingPaxIndex, 1, { ...pax });
     }
 
-    public async delete(...ids: string[]): Promise<void>
+    public async delete(id: string): Promise<void>
     {
-        given(ids, "ids").ensureHasValue().ensureIsArray()
-            .ensure(t => t.isNotEmpty)
-            .ensure(ids => ids.every(id => this._allPassengers.some(pax => pax.id === id)));
+        given(id, "id").ensureHasValue().ensureIsString()
+            .ensure(t => this._allPassengers.some(pax => pax.id === t));
 
-        for (const id of ids)
-        {
-            const existingPaxIndex = this._allPassengers.findIndex(t => t.id === id);
-            this._allPassengers.splice(existingPaxIndex, 1);
-        }
+        const existingPaxIndex = this._allPassengers.findIndex(t => t.id === id);
+        this._allPassengers.splice(existingPaxIndex, 1);
     }
 }

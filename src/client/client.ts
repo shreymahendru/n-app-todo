@@ -9,7 +9,7 @@ import { ComponentInstaller, Registry } from "@nivinjoseph/n-ject";
 import { given } from "@nivinjoseph/n-defensive";
 import { MockTodoService } from "../sdk/services/todo-service/mock-todo-service";
 import { components } from "./components/components";
-import { MockPaxManagementService } from "../sdk/services/pax-management-service/mock-pax-management-service";
+import { LocalPaxManagementService } from "../sdk/services/pax-management-service/local-pax-management-service";
 
 console.log(Vue);
 
@@ -22,7 +22,7 @@ class Installer implements ComponentInstaller
 
         registry
             .registerSingleton("TodoService", MockTodoService)
-            .registerSingleton("PaxManagementService", MockPaxManagementService); // installing dependencies, usually used by VMs
+            .registerSingleton("PaxManagementService", LocalPaxManagementService); // installing dependencies, usually used by VMs
 
 
         // Types of dependencies: 

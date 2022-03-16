@@ -13,7 +13,7 @@ export class PaxTableRowViewModel extends ComponentViewModel
 {
     private get _selectablePax(): SelectablePax { return this.getBound("selectablePax"); }
 
-    
+
     public get pax(): Pax { return this._selectablePax.pax; }
 
     public get isSelected(): boolean { return this._selectablePax.isSelected; }
@@ -33,6 +33,6 @@ export class PaxTableRowViewModel extends ComponentViewModel
 
     protected override onCreate(): void
     {
-        given(this, "this").ensure(t => t._selectablePax != null);
+        given(this, "this").ensure(t => t._selectablePax != null, "No pax bound");
     }
 }

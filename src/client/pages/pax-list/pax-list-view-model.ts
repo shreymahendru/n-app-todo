@@ -118,7 +118,8 @@ export class PaxListViewModel extends PageViewModel
         this._dialogService.showLoadingScreen();
         try 
         {
-            await this._paxManagementService.delete(...selectedPaxes.map(t => t.pax.id!));
+            for (const id of selectedPaxes.map(t => t.pax.id!))
+                await this._paxManagementService.delete(id);
         }
         catch (e)
         {
@@ -140,7 +141,7 @@ export class PaxListViewModel extends PageViewModel
     {
         super.onEnter();
 
-        this._loadPaxes().then().catch();
+        this._loadPaxes().catch();
     }
 
 
