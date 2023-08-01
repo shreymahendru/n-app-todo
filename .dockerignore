@@ -1,0 +1,9 @@
+node_modules
+ops/
+.DS_Store
+.env
+# config.json
+.vscode/
+.git/
+test/
+iac/

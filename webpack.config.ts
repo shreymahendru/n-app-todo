@@ -1,10 +1,11 @@
+import "@nivinjoseph/n-ext";
 const path = require("path");
 const autoprefixer = require("autoprefixer");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
 const CompressionPlugin = require("compression-webpack-plugin");
 import { ConfigurationManager } from "@nivinjoseph/n-config";
 const webpack = require("webpack");
@@ -46,7 +47,10 @@ const moduleRules: Array<any> = [
                 }
             },
             {
-                loader: "css-loader" // translates CSS into CommonJS
+                loader: "css-loader", // translates CSS into CommonJS
+                options: {
+                    esModule: false
+                }
             },
             {
                 loader: "postcss-loader", // postcss
@@ -80,7 +84,10 @@ const moduleRules: Array<any> = [
                 }
             },
             {
-                loader: "css-loader" // translates CSS into CommonJS
+                loader: "css-loader", // translates CSS into CommonJS
+                options: {
+                    esModule: false
+                }
             }
         ]
     },
@@ -155,6 +162,13 @@ const moduleRules: Array<any> = [
         use: [tsLintLoader]
     },
     {
+        test: /-resolver\.ts$/,
+        use: [
+            { loader: "@nivinjoseph/n-app/dist/loaders/resolver-loader.js" },
+            tsLoader
+        ]
+    },
+    {
         test: /-view-model\.ts$/,
         use: [
             { loader: "@nivinjoseph/n-app/dist/loaders/view-model-loader.js" },
@@ -173,7 +187,9 @@ const moduleRules: Array<any> = [
             {
                 loader: "worker-loader",
                 options: {
-                    esModule: false
+                    esModule: false,
+                    filename: "[name].[contenthash].worker.js",
+                    chunkFilename: "[id].[contenthash].worker.js",
                 }
             },
             tsLoader
@@ -193,7 +209,7 @@ const moduleRules: Array<any> = [
             {
                 loader: "html-loader",
                 options: {
-                    attrs: ["img:src", "use:xlink:href"]
+                    esModule: false
                 }
             }
         ]
@@ -205,7 +221,7 @@ const moduleRules: Array<any> = [
             {
                 loader: "html-loader",
                 options: {
-                    attrs: ["img:src", "use:xlink:href"]
+                    esModule: false
                 }
             }
         ]
@@ -226,8 +242,9 @@ const plugins = [
     new HtmlWebpackPlugin({
         template: "src/server/controllers/index-view.html",
         filename: "index-view.html",
-        // favicon: "src/client/images/wrise-squirrel-colored.png",
-        hash: true
+        // favicon: "src/client/images/logos/x-flat-favicon.ico",
+        hash: true,
+        minify: false
     }),
     new MiniCssExtractPlugin({}),
     new webpack.DefinePlugin({
@@ -244,10 +261,22 @@ if (isDev)
     //     enforce: "pre"
     // });
 
-    plugins.push(new webpack.WatchIgnorePlugin([
-        /\.js$/,
-        /\.d\.ts$/
-    ]));
+    moduleRules.push({
+        test: /\.js$/,
+        include: [path.resolve(__dirname, "node_modules/pdfjs-dist/build/pdf.js")],
+        use: {
+            loader: "babel-loader",
+            options: {
+                presets: ["@babel/preset-env"]
+            }
+        }
+    });
+
+    plugins.push(new webpack.WatchIgnorePlugin({
+        paths: [/\.js$/, /\.d\.ts$/]
+    }));
+
+    plugins.push(new webpack.HotModuleReplacementPlugin());
 }
 else
 {
@@ -283,7 +312,7 @@ module.exports = {
     mode: isDev ? "development" : "production",
     target: "web",
     entry: {
-        main: ["./src/client/client.ts"]
+        main: ["./src/client/client.ts", isDev ? "webpack-hot-middleware/client" : null].where(t => t != null)
     },
     output: {
         filename: "[name].bundle.js",
@@ -293,14 +322,16 @@ module.exports = {
     },
     devtool: isDev ? "source-map" : false,
     optimization: {
+        runtimeChunk: "single",
         splitChunks: {
             chunks: "all"
         },
         minimizer: [
             new TerserPlugin({
+                exclude: /(vendors|\.worker)/,
                 terserOptions: {
-                    keep_classnames: true,
-                    keep_fnames: true,
+                    keep_classnames: false,
+                    keep_fnames: false,
                     safari10: true,
                     mangle: true,
                     output: {
@@ -309,7 +340,7 @@ module.exports = {
                 },
                 extractComments: false
             }),
-            new OptimizeCSSAssetsPlugin({})
+            new CssMinimizerPlugin()
         ]
     },
     module: {
@@ -318,6 +349,7 @@ module.exports = {
     plugins: plugins,
     resolve: {
         extensions: [".ts", ".js"],
+        symlinks: false,
         alias: {
             // https://feathericons.com/
             // feather: path.resolve(__dirname, "node_modules/feather-icons/dist/feather-sprite.svg"),

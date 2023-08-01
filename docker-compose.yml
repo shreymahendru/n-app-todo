@@ -1,0 +1,10 @@
+version: "3"
+
+services: 
+    n-app-todo:
+        build: ./
+        command: bash /usr/src/app/entrypoint.sh
+        volumes: 
+            - .:/usr/src/app
+        ports: 
+            -  "7100:7100"
